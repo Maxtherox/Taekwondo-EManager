@@ -12,7 +12,7 @@ const app = express();
 app.use(cookieParser());
 app.use(cors(
     {
-        origin: ["http://localhost:5176"],
+        origin: ["https://taekwondo.guilhermejp.com"],
         credentials: true,
     }
 ));
