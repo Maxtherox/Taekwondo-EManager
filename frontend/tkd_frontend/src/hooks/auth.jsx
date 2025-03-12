@@ -20,11 +20,14 @@ import {
           { email, password },
           {withCredentials: true })
         const { user } = response.data;
-
+          console.log({user})
         const { role, id, ...userWithoutSensitiveData } = user;
         console.log(user)
 
         localStorage.setItem("@estock:user", JSON.stringify(user));
+
+         // Armazena o token nos cookies
+        Cookies.set('token', token);
   
         setData({ user });
   

@@ -2,8 +2,6 @@ import { Container, Form, Main, Wallpaper, WallpaperContainer } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/button";
 import {Input} from "../../components/input";
-import tkd_guy from "../../assets/tkd-guys2.png"
-import liga from "../../assets/liga.png"
 
 import { useState } from "react";
 import { useAuth } from "../../hooks/auth";

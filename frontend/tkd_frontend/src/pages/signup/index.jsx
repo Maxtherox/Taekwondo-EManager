@@ -2,8 +2,6 @@ import { Container, Form, Main, Wallpaper, WallpaperContainer } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
-import tkd_guy from "../../assets/tkd-guys2.png"
-import liga from "../../assets/liga.png"
 
 import { api } from "../../services/api";
 import { useState } from "react";
@@ -113,7 +111,7 @@ export function SignIn() {
                 </Form>
                 <Wallpaper>
                     <WallpaperContainer>
-                        <img src={liga} />
+                       
 
 
                     </WallpaperContainer>
