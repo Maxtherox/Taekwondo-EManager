@@ -18,7 +18,7 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     height: 100vh;
-    min-width: 700px;
+    max-width: 70rem;
     background-color: ${({theme}) => theme.COLORS.GREEN_LIGHT_400};
     padding:150px;
     justify-content: center;
