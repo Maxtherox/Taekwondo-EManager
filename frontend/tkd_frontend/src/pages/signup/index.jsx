@@ -7,6 +7,8 @@ import { api } from "../../services/api";
 import { useState } from "react";
 import { useAuth } from "../../hooks/auth";
 
+
+
 export function SignIn() {
     const navigate = useNavigate()
 
@@ -84,10 +86,10 @@ export function SignIn() {
                             value={formData.password}
                             onChange={handleChange}
                         />
-                        <label htmlFor="age">Idade</label>
+                        <label htmlFor="age">Data de nascimento</label>
                         <Input
                             placeholder="Insira sua idade"
-                            type="number"
+                            type="date"
                             id="age"
                             value={formData.age}
                             onChange={handleChange}
@@ -101,21 +103,16 @@ export function SignIn() {
                             <option value="candidato"> candidato</option>
                             <option value="preta"> preta</option>
                         </select>
-                        <Button
+
+                    </fieldset>
+                    <Button
                             title={"Cadastrar"}
                             onClick={handleRegister}
                             loading={loading}
                         />
                         <Link to="/">Voltar</Link>
-                    </fieldset>
                 </Form>
                 <Wallpaper>
-                    <WallpaperContainer>
-                       
-
-
-                    </WallpaperContainer>
-
                 </Wallpaper>
             </Main>
 

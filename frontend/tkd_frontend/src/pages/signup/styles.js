@@ -1,16 +1,21 @@
 import styled from "styled-components";
 
-import tkd_guy from "../../assets/tkd-guy.png"
+import tkd_guy from "../../assets/blackbelt.jpg"
 
 export const Container = styled.div`
 background-color: ${({theme}) => theme.COLORS.LIGHT_LIGHT_200};
 height: 100vh;
 width: 100%;
 color: white;
+ 
 `
 
 export const Main = styled.main`
 display: flex;
+flex-direction: row-reverse;
+justify-content: center;
+align-content: center;
+
 
 `
 
@@ -18,14 +23,18 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     height: 100vh;
-    min-width: 700px;
+    padding: 40px 80px;
+    width: 70rem;
     background-color: ${({theme}) => theme.COLORS.GREEN_LIGHT_400};
-    padding:150px;
     justify-content: center;
+    overflow: auto;
+    overflow-x: hidden; 
     > h1 {
-    font-size: 32px;
+    font-size: 26px;
     font-weight: bold;
     margin: 0 auto;
+    text-align: center;
+
     color: ${({theme}) => theme.COLORS.YELLOW_LIGHT};
     }
     > p {
@@ -33,6 +42,7 @@ export const Form = styled.form`
         margin-bottom: 50px;
         width: 400px;
         text-align: center;
+        font-size: 16px;
         color: ${({theme}) => theme.COLORS.LIGHT_LIGHT_200};
     }
 
@@ -41,8 +51,9 @@ export const Form = styled.form`
         border: none;
         display: flex;
         flex-direction: column;
-        width: 100%;
-        
+        height: 450px;
+        padding: 0 20px;
+        overflow: auto;
         > select {
             height: 58px;
             border-radius: 8px;
@@ -53,7 +64,7 @@ export const Form = styled.form`
         }
         > legend {
             margin: 0 auto;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 500;
             margin-bottom: 50px;
 
@@ -73,15 +84,30 @@ export const Form = styled.form`
             margin: 0 auto;
     }}
     
+    > button {
+        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    > a {
+        font-style: normal;
+        color: white;
+        text-decoration: none;
+        margin: 0 auto;
+    }
 `
 
 export const Wallpaper = styled.div`
     background-image: url(${tkd_guy}) ;
-    width: 1000px;
+    background-position: -160px;
     background-size: cover;
 
     background-repeat: no-repeat;
     margin: 0 auto;
+
+    width: 100%;
     display: flex;
 `
 
