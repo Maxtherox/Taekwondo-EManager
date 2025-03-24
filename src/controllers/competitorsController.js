@@ -48,6 +48,7 @@ class CompetitorsController {
             const result = await knex("competitors")
                 .join("users", "competitors.user_id", "=", "users.id")
                 .select(
+                    "competitors.id",
                     "competitors.name",
                     "competitors.age",
                     "competitors.belt",
@@ -77,7 +78,7 @@ class CompetitorsController {
     async index(request, response){
         const result = await knex("competitors")
         .join("users", "competitors.user_id","users.id")
-        .select("competitors.name", "competitors.age", "competitors.belt","competitors.belt_category","competitors.gender", "competitors.weight", "competitors.user_id", "users.name as created_by")
+        .select("competitors.id","competitors.name", "competitors.age", "competitors.belt","competitors.belt_category","competitors.gender", "competitors.weight", "competitors.user_id", "users.name as created_by")
         return response.status(201).json(result);
     }
 }

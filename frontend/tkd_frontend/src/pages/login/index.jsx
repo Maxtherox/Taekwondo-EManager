@@ -58,8 +58,8 @@ export function Login(){
         <Container>
             <Main>
             <Form>
-                <h1>Taekwondo - Liga nacional</h1>
-                <p>Aplicação para gerenciar campeonatos e gerar pareamentos de lutas</p>
+                <h1>Taekwondo E-Manager</h1>
+                <p>Site para gerenciar campeonatos e gerar pareamentos de lutas</p>
                 <fieldset>
                     <legend>Faça seu login</legend>
                     <label htmlFor="email">E-mail</label>

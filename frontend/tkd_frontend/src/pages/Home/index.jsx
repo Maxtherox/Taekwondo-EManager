@@ -10,11 +10,16 @@ import { ButtonText } from '../../components/ButtonText';
 import { api } from '../../services/api';
 import { Button } from '../../components/button';
 import { Competitor } from '../../components/Competitor';
+import { USER_ROLE } from '../../utils/roles';
+import { useAuth } from '../../hooks/auth';
+
 
 export function Home() {
     const [search, setSearch] = useState("");
     const [notes, setNotes] = useState([]);
     const [competitors, setCompetitors] = useState([]);
+
+    const { signOut, user } = useAuth()
 
     const navigate = useNavigate();
 
@@ -26,6 +31,9 @@ export function Home() {
         navigate(`/details/${id}`);
     }
 
+    function handleDetailsCompetitors(id) {
+        navigate(`/detailscompetitors/${id}`);
+    }
     useEffect(() => {
         async function fetchNotes() {
             const response = await api.get(`/championships?name=${search}`);
@@ -42,59 +50,96 @@ export function Home() {
         fetchCompetitors();
     }, [search]);
 
+    function handleSignOut() {
+        navigate("/")
+        signOut();
+    }
+
     return (
         <Container>
-            <Brand>
-                <h1>Taekwondo WT</h1>
-            </Brand>
-            <Header />
-
-            <Menu>
-                <li>
-                    <ButtonText 
-                        title="Campeonatos"
-                        isActive={true}
+            {user.role === USER_ROLE.CUSTOMER && (<>
+                <h1 style=
+                    {
+                        {
+                            fontSize: '32px',
+                            textAlign: "center",
+                            width: "100vw",
+                            margin: "400px 0",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignContent: "center"
+                        }
+                    }
+                >
+                    Faça login como administrador, rotas de usuários em construção...
+                    <button onClick={handleSignOut} style=
+                        {
+                            {
+                                width: "20rem",
+                                padding: "10px",
+                                margin: "10px auto",
+                                borderRadius: "4px"
+                            }
+                        }
+                    >
+                        logout
+                    </button>
+                </h1>
+            </>
+            )}
+            {user.role === USER_ROLE.ADMIN ? (<>
+                <Brand>
+                    <h1>Taekwondo WT</h1>
+                </Brand>
+                <Header />
+                <Menu>
+                    <li>
+                        <ButtonText
+                            title="Campeonatos"
+                            isActive={true}
+                        />
+                    </li>
+                </Menu>
+                <Search>
+                    <Input
+                        placeholder="Pesquisar pelo título"
+                        icon={FiSearch}
+                        onChange={(e) => setSearch(e.target.value)}
                     />
-                </li>
-            </Menu>
+                </Search>
 
-            <Search>
-                <Input 
-                    placeholder="Pesquisar pelo título"
-                    icon={FiSearch}
-                    onChange={(e) => setSearch(e.target.value)}
-                />
-            </Search>
+                <Content>
+                    <Section title="Campeonatos">
+                        {notes.map(note => (
+                            <Note
+                                key={note.id}
+                                data={note}
+                                onClick={() => handleDetails(note.id)}
+                            />
+                        ))}
+                    </Section>
+                    <Section title="Cadastros">
+                        {competitors.map(competitor => {
+                            return (<Competitor
+                                key={competitor.id}
+                                data={competitor}
+                                onClick={() => handleDetailsCompetitors(competitor.id)}
+                            />)
+                        })}
+                    </Section>
+                    <Section title="Exames de faixa">
+                    </Section>
+                </Content>
+                <div className="botaoamarelo">
+                    <Button onClick={handleClick} title="+ criar participantes" />
+                </div>
 
-            <Content>
-                <Section title="Campeonatos">
-                    {notes.map(note => (
-                        <Note 
-                            key={String(note.id)}
-                            data={note}
-                            onClick={() => handleDetails(note.id)}
-                        />
-                    ))}
-                </Section>
-                <Section title="Cadastros">
-                    {competitors.map(competitor => (
-                        <Competitor 
-                            key={String(competitor.id)}
-                            data={competitor}
-                            onClick={() => handleDetails(competitor.id)}
-                        />
-                    ))}
-                </Section>
-                <Section title="Exames de faixa">
-                </Section>
-            </Content>
-            <div className="botaoamarelo">
-                <Button onClick={handleClick} title="+ criar participantes" /> 
-            </div>
-            
-            <NewNote to="/new">
-                + criar campeonato
-            </NewNote>
+                <NewNote to="/new">
+                    + criar campeonato
+                </NewNote>
+            </>
+            ) : null}
         </Container>
     );
 }

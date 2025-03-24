@@ -1,4 +1,4 @@
-import { Container, Form, Main, Wallpaper, WallpaperContainer } from "./styles";
+import { Container, Form, Main, Wallpaper, WallpaperContainer,  } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
@@ -58,8 +58,8 @@ export function SignIn() {
     return (
         <Container>
             <Main>
-                <Form>
-                    <h1>Taekwondo - Liga nacional</h1>
+            <h2>Taekwondo WT - Cadastro</h2>
+                <Form>           
                     <fieldset>
                         <legend>Formulário de cadastro</legend>
                         <label htmlFor="name">Nome completo</label>
@@ -103,19 +103,17 @@ export function SignIn() {
                             <option value="candidato"> candidato</option>
                             <option value="preta"> preta</option>
                         </select>
-
                     </fieldset>
-                    <Button
+                </Form>
+                <Button
                             title={"Cadastrar"}
                             onClick={handleRegister}
                             loading={loading}
                         />
-                        <Link to="/">Voltar</Link>
-                </Form>
-                <Wallpaper>
-                </Wallpaper>
+                        <Link to="/">Voltar</Link> 
             </Main>
-
+            <Wallpaper>
+            </Wallpaper>
         </Container>
     )
 }

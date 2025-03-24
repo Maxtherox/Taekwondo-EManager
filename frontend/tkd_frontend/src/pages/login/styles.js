@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import tkd_guy from "../../assets/tkd-guy.png"
+import tkd_guy from "../../assets/Wallpaper2.jpg"
 
 export const Container = styled.div`
 background-color: ${({theme}) => theme.COLORS.LIGHT_LIGHT_200};
@@ -11,27 +11,30 @@ color: white;
 
 export const Main = styled.main`
 display: flex;
-
+flex-direction: row;
+justify-content: center;
+align-content: center;
 `
 
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
     height: 100vh;
-    max-width: 70rem;
+    padding: 4rem 8rem;
     background-color: ${({theme}) => theme.COLORS.GREEN_LIGHT_400};
-    padding:150px;
     justify-content: center;
     > h1 {
-    font-size: 32px;
+    font-size: 3.8rem;
+    text-align: center;
     font-weight: bold;
     margin: 0 auto;
+    margin-bottom: 0;
     color: ${({theme}) => theme.COLORS.YELLOW_LIGHT};
     }
     > p {
         margin: 0 auto;
-        margin-bottom: 50px;
-        width: 400px;
+        margin-bottom: 5rem;
+        width: 40rem;
         text-align: center;
         color: ${({theme}) => theme.COLORS.LIGHT_LIGHT_200};
     }
@@ -42,13 +45,13 @@ export const Form = styled.form`
         display: flex;
         flex-direction: column;
         width: 100%;
-        margin-bottom: 150px;
+        margin-bottom: 15rem;
 
         > legend {
             margin: 0 auto;
             font-size: 24px;
             font-weight: 500;
-            margin-bottom: 50px;
+            margin-bottom: 2rem;
 
         }
         > div input{
@@ -56,7 +59,7 @@ export const Form = styled.form`
             width: 100%;
         }
         > button {
-            height: 80px;
+            height: 6rem
         }
 
         > a {
@@ -71,7 +74,7 @@ export const Form = styled.form`
 
 export const Wallpaper = styled.div`
     background-image: url(${tkd_guy}) ;
-    width: 1000px;
+    width: 100%;
     background-size: cover;
 
     background-repeat: no-repeat;

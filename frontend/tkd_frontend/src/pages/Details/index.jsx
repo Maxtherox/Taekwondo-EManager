@@ -90,8 +90,6 @@ export function Details() {
                     data={competitor}
                     onClick={() => handleDetails(competitor.id)}
                   />
-
-
                 </div>
               ))}
             </Section>

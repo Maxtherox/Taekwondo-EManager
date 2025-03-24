@@ -8,7 +8,7 @@ import { NewCompetitor } from "../pages/NewCompetitor";
 /*<Route  path="/details/:id" element={<Details />}/>
             <Route path="/newproduct" element={<NewProduct />}/>
             <Route  path="/cart" element={<CartPage />}/>*/
-export function AdminRoutes(){
+export function CustomerRoutes(){
     return(
         <Routes>
             <Route  path="/" element={<Home />}/>
