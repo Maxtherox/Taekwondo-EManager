@@ -84,9 +84,9 @@ export function Details() {
             <Button title="Voltar" onClick={handleBack} />
             <Section title="Participantes">
               {competitorsData.map((competitor) => (
-                <div key={competitor.id}>
+                <div>
                   <Competitor
-                    key={String(competitor.id)}
+                    key={competitor.id}
                     data={competitor}
                     onClick={() => handleDetails(competitor.id)}
                   />

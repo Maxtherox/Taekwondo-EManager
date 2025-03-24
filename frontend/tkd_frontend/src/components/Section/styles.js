@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-
- 
-
     margin: 28px 0;
     width: 100%;
     overflow-x: auto;
@@ -11,6 +8,7 @@ export const Container = styled.section`
         display: flex;
         flex-direction: row;
         gap: 20px;
+        padding: 0 10px;
 
     }
     > h2 {

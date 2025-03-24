@@ -46,7 +46,10 @@ export function DetailsCompetitors() {
         <main>
           <Content>
             <ButtonText className="delete" title="Excluir campeonato" onClick={() => handleRemove()} />
-            <h1>Nome: {data.name}</h1>
+            <h2>Nome: {data.name}</h2>
+            <p>Idade: {data.age}</p>
+            <p><strong>Criado por:</strong> {data.created_by}</p>
+            uga buga
             <Button title="Voltar" onClick={handleBack} />
           </Content>
         </main>

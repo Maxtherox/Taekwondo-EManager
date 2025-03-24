@@ -78,7 +78,20 @@ export const Content = styled.div`
      padding: 0 64px ; 
      overflow-y: auto;
      
+     > section:nth-child(2){
 
+
+        > div {
+
+            width: 100%;
+
+            > button {
+                min-width: 200px;
+
+            }
+        }
+        
+     }
 
 `;
 export const NewNote = styled(Link)`
