@@ -79,8 +79,6 @@ export const Content = styled.div`
      overflow-y: auto;
      
      > section:nth-child(2){
-
-
         > div {
 
             width: 100%;
@@ -89,9 +87,20 @@ export const Content = styled.div`
                 min-width: 200px;
 
             }
-        }
-        
+        }        
      }
+
+     > section:nth-child(4){
+        > div {
+            flex-direction: column;
+          
+            > article {
+                > h3 {
+                font-size: 25px;
+            }
+            }
+        }
+        }
 
 `;
 export const NewNote = styled(Link)`

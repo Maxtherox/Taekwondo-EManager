@@ -18,6 +18,8 @@ export function Home() {
     const [search, setSearch] = useState("");
     const [notes, setNotes] = useState([]);
     const [competitors, setCompetitors] = useState([]);
+    // ---> Novo estado para armazenar os posts <---
+    const [posts, setPosts] = useState([]);
 
     const { signOut, user } = useAuth()
 
@@ -49,6 +51,26 @@ export function Home() {
         }
         fetchCompetitors();
     }, [search]);
+
+     // ---> Novo useEffect para buscar os posts <---
+    useEffect(() => {
+        async function fetchPosts() {
+            try {
+                // Busca os posts da nova rota /posts
+                const response = await api.get("/posts");
+                // Define o estado com os posts recebidos
+                // Ajuste 'response.data' se sua API retornar os posts dentro de outra chave
+                setPosts(response.data);
+            } catch (error) {
+                console.error("Erro ao buscar posts:", error);
+                // Adicione feedback visual para o usuário se desejar
+                // Ex: setPostsError("Não foi possível carregar os artigos.");
+            }
+        }
+
+        // Chama a função para buscar os posts quando o componente montar
+        fetchPosts();
+    }, []); // Array de dependências vazio para executar apenas uma vez
 
     function handleSignOut() {
         navigate("/")
@@ -90,7 +112,9 @@ export function Home() {
             )}
             {user.role === USER_ROLE.ADMIN ? (<>
                 <Brand>
-                    <h1>Taekwondo WT</h1>
+                    <h1>Taekwondo WT                 <NewNote to="/newpost">
+                    + criar campeonato
+                </NewNote></h1>
                 </Brand>
                 <Header />
                 <Menu>
@@ -130,11 +154,34 @@ export function Home() {
                     </Section>
                     <Section title="Exames de faixa">
                     </Section>
+                    {/* ---> Nova Seção para exibir os Posts <--- */}
+                    <Section title="Artigos e Ensino">
+                        {posts && posts.length > 0 ? (
+                            posts.map(post => (
+                                <article className='post-content' key={post.id} style={{ marginBottom: '2rem', padding: '1rem', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f9f9f9' }}>
+                                    <h3 style={{ marginBottom: '0.5rem' }}>{post.title}</h3>
+                                    {/*
+                                        ATENÇÃO: dangerouslySetInnerHTML é necessário para renderizar HTML.
+                                        Use isso SOMENTE porque você está (ou deveria estar) SANITIZANDO
+                                        o HTML no backend ANTES de salvar no banco.
+                                        Se o HTML não for sanitizado no backend, isso é uma VULNERABILIDADE DE SEGURANÇA (XSS).
+                                    */}
+                                    <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                                    <footer style={{ marginTop: '1rem', fontSize: '0.8em', color: '#555' }}>
+                                        Autor: {post.author_name || 'Desconhecido'} | Publicado em: {new Date(post.created_at).toLocaleDateString()}
+                                    </footer>
+                                </article>
+                            ))
+                        ) : (
+                            <p>Nenhum artigo encontrado.</p>
+                            // Você pode adicionar um indicador de carregamento aqui enquanto busca os posts
+                        )}
+                    </Section>
                 </Content>
-                <div className="botaoamarelo">
-                    <Button onClick={handleClick} title="+ criar participantes" />
-                </div>
-
+                
+                <NewNote to="/newposts">
+                    + criar post
+                </NewNote>
                 <NewNote to="/new">
                     + criar campeonato
                 </NewNote>

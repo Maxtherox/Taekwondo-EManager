@@ -1,21 +1,22 @@
 const AppError = require('../utils/AppError');
 const knex = require('../database/knex');
 const { hash, compare} = require('bcryptjs');
+const {calculateAge} = require('../utils/calcAge')
 
 class UsersController {
     async create(request, response){
-        const {name, email, password, age, belt} = request.body
-
+        const {name, email, password, birth_date, belt} = request.body
+        console.log("Senha recebida:", password);
         console.log(request.body)
         const  hashedPassword = await hash(password, 8);
-        await knex("users").insert({name: name, email: email, password: hashedPassword, age: age, belt: belt});
+        await knex("users").insert({name: name, email: email, password: hashedPassword, birth_date: birth_date, belt: belt});
    
          return response.status(201).json()
     }
     async index(request, response){
-        //const {name, email, password, age, belt} = request.body
+        //const {name, email, password, birth_date, belt} = request.body
 
-        const users = await knex("users").select('name', 'email', 'age', 'belt')
+        const users = await knex("users").select('name', 'email', 'birth_date', 'belt')
        
         return response.status(200).json(users)
     }

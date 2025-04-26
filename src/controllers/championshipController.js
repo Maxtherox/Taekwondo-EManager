@@ -59,7 +59,7 @@ class ChampionshipsController {
                 .select(
                     "competitors.name",
                     "competitors.belt",
-                    "competitors.age",
+                    "competitors.birth_date",
                     "competitors.weight",
                     "competitors.belt_category",
                     "competitors.gender"
